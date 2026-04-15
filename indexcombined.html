@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Wellbeing Hub</title>
+
+<style>
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #eef2f7;
+}
+
+/* NAVBAR */
+header {
+  background: #2c7a7b;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LOGO */
+.logo {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* MENU */
+.menu {
+  display: flex;
+  gap: 25px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu a:hover {
+  color: #a7f3d0;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+}
+
+/* HERO */
+.hero {
+  background: url('https://images.unsplash.com/photo-1506126613408-eca07ce68773') center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 120px 20px;
+}
+
+.hero h1 {
+  font-size: 42px;
+}
+
+/* SECTIONS */
+section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+/* CARDS */
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* EVENTS */
+.event {
+  background: white;
+  padding: 20px;
+  margin: 15px auto;
+  width: 70%;
+  border-radius: 10px;
+}
+
+/* BUTTON */
+button {
+  padding: 10px 20px;
+  background: #2c7a7b;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #225e5f;
+}
+
+/* FORM */
+form {
+  max-width: 400px;
+  margin: auto;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* FOOTER */
+footer {
+  background: #2c7a7b;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+/* 📱 MOBILE RESPONSIVE */
+@media(max-width: 768px){
+
+.menu {
+  display: none;
+  flex-direction: column;
+  background: #2c7a7b;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 200px;
+  padding: 10px;
+}
+
+.menu.show {
+  display: flex;
+}
+
+.hamburger {
+  display: block;
+}
+
+.event {
+  width: 95%;
+}
+
+.hero h1 {
+  font-size: 28px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+
+<div class="logo">Wellbeing Hub</div>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+<div class="menu" id="menu">
+<a onclick="go('home')">Home</a>
+<a onclick="go('services')">Services</a>
+<a onclick="go('events')">Events</a>
+<a onclick="go('booking')">Book</a>
+<a onclick="go('contact')">Contact</a>
+</div>
+
+</nav>
+</header>
+
+<!-- HOME -->
+<div id="home" class="hero">
+<h1>Community Wellbeing Hub</h1>
+<p>Supporting mental, physical, and social wellbeing</p>
+</div>
+
+<section>
+<h2>About Us</h2>
+<p>
+The Community Wellbeing Hub provides access to essential health services, including mental health support,
+physical activities, and community programmes designed to improve quality of life.
+</p>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+<h2>Our Services</h2>
+
+<div class="container">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f">
+<h3>Mental Health Support</h3>
+<p>Professional counselling, therapy sessions, and stress management programmes.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74">
+<h3>Physical Activity</h3>
+<p>Yoga classes, fitness sessions, and wellness workshops.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac">
+<h3>Family Support</h3>
+<p>Support for families including parenting advice and community care services.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+<h2>Upcoming Events</h2>
+
+<div class="event">
+<h3>Yoga Workshop</h3>
+<p>Date: 25 April</p>
+<button onclick="go('booking')">Book Now</button>
+</div>
+
+<div class="event">
+<h3>Wellbeing Seminar</h3>
+<p>Date: 30 April</p>
+<button onclick="go('booking')">Book Now</button>
+</div>
+
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+<h2>Book an Event</h2>
+
+<form onsubmit="book(event)">
+<input required placeholder="Full Name">
+<input required type="email" placeholder="Email">
+<button type="submit">Submit Booking</button>
+</form>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Contact Us</h2>
+
+<p><strong>Phone:</strong> 7910005673</p>
+<p><strong>Email:</strong> support@wellbeinghub.com</p>
+
+<form onsubmit="send(event)">
+<input placeholder="Name">
+<input type="email" placeholder="Email">
+<textarea placeholder="Message"></textarea>
+<button type="submit">Send</button>
+</form>
+
+</section>
+
+<footer>
+<p>© 2026 Community Wellbeing Hub</p>
+</footer>
+
+<script>
+
+/* NAVIGATION */
+function go(id){
+document.getElementById(id).scrollIntoView({behavior:'smooth'});
+
+/* close menu on mobile */
+document.getElementById("menu").classList.remove("show");
+}
+
+/* MOBILE MENU */
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("show");
+}
+
+/* BOOKING */
+function book(e){
+e.preventDefault();
+alert("Booking successful!");
+}
+
+/* CONTACT */
+function send(e){
+e.preventDefault();
+alert("Message sent successfully!");
+}
+
+</script>
+
+</body>
+</html>
